@@ -66,8 +66,12 @@ app.get("/users/:userId/total-reward", async (req, res) => {
     const totalRewardQuery = `
       SELECT COALESCE(SUM(q.eth_reward), 0) AS total_reward
       FROM quests q
-      JOIN quest_completions qc ON qc.quest_id = q.id
-      WHERE qc.user_id = $1;
+      WHERE EXISTS (
+        SELECT 1
+        FROM quest_completions qc
+        WHERE qc.quest_id = q.id
+          AND qc.user_id = $1
+      );
     `;
 
     const { rows } = await pool.query(totalRewardQuery, [userId]);
@@ -88,12 +92,11 @@ app.get("/users/:userId/total-reward-usd", async (req, res) => {
   const { userId } = req.params;
 
   try {
-    // Query the database to get the claimed_at date for the given user ID
     const totalRewardQuery = `
-        SELECT qc.*, q.eth_reward
-        FROM quest_completions qc
-        JOIN quests q ON qc.quest_id = q.id
-        WHERE qc.user_id = $1;
+      SELECT qc.*, q.eth_reward
+      FROM quest_completions qc
+      JOIN quests q ON qc.quest_id = q.id
+      WHERE qc.user_id = $1;
     `;
     const { rows } = await pool.query(totalRewardQuery, [userId]);
 

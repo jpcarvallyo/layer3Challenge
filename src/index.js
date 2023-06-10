@@ -75,8 +75,12 @@ app.get("/users/:userId/total-reward", (req, res) => __awaiter(void 0, void 0, v
         const totalRewardQuery = `
       SELECT COALESCE(SUM(q.eth_reward), 0) AS total_reward
       FROM quests q
-      JOIN quest_completions qc ON qc.quest_id = q.id
-      WHERE qc.user_id = $1;
+      WHERE EXISTS (
+        SELECT 1
+        FROM quest_completions qc
+        WHERE qc.quest_id = q.id
+          AND qc.user_id = $1
+      );
     `;
         const { rows } = yield pool.query(totalRewardQuery, [userId]);
         const totalReward = ((_a = rows[0]) === null || _a === void 0 ? void 0 : _a.total_reward) || 0;
@@ -94,12 +98,11 @@ app.get("/users/:userId/total-reward", (req, res) => __awaiter(void 0, void 0, v
 app.get("/users/:userId/total-reward-usd", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId } = req.params;
     try {
-        // Query the database to get the claimed_at date for the given user ID
         const totalRewardQuery = `
-        SELECT qc.*, q.eth_reward
-        FROM quest_completions qc
-        JOIN quests q ON qc.quest_id = q.id
-        WHERE qc.user_id = $1;
+      SELECT qc.*, q.eth_reward
+      FROM quest_completions qc
+      JOIN quests q ON qc.quest_id = q.id
+      WHERE qc.user_id = $1;
     `;
         const { rows } = yield pool.query(totalRewardQuery, [userId]);
         const userCompletedQuestsWithRewards = yield (0, retrieveCryptoPrice_1.getTotalRewardsInUSDWC)(rows, "ethereum");
