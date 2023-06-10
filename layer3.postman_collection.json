@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "14ffc3bf-2f9e-4a72-a20c-ec4de278c506",
+		"name": "layer3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2465827"
+	},
+	"item": [
+		{
+			"name": "10 most popular quests",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/quests/popular",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"quests",
+						"popular"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Top 10 quests paided out in ETH to users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/quests/top-payouts",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"quests",
+						"top-payouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "total reward in ETH for a given userID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/4/total-reward",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"4",
+						"total-reward"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "total reward in USD for given user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/users/1/total-reward-usd",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"1",
+						"total-reward-usd"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
