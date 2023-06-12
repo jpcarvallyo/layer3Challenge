@@ -5,6 +5,10 @@ Here is my submission to the Layer 3 challenge. I appreciate all of your time re
 
 I normally would use a dot.env file to manage the username, password, host, etc. for variables that are sensitive but since this is a challenge that is supposed to be brief and minimalist, I've left that out.
 
+Here is a link to the demo I recorded for this challenge where I'm hitting the routes with Postman with my Postgresql db running on my machine.
+(Part 1: https://www.loom.com/share/45649daed165486f919de74a5a5e2eb4?sid=71530b5b-4f29-4bab-829f-dee0d9b3be05)
+(Part 2: https://www.loom.com/share/c4980182909a4bd0896671107e0bd365?sid=b5c6df26-6ca7-4de8-a432-4983c3657cad)
+
 **Pros:**
 
 **Modularity:** The code is structured using modular functions and routes, making it easy to understand and maintain. Each route handles a specific API endpoint, enhancing code organization and readability.
