@@ -33,4 +33,4 @@ Here is a link to the demo I recorded for this challenge where I'm hitting the r
 
 **Missing ENV variable file** Due to this being a quick and minimal coding challenge, this repo doesn't have private variables in an env file. 
 
-**Routing not in it's own foldres** The routes were placed all in app.js, normally I would place these routes in a directory that I would import into app so it is much cleaner.
+**Routing not in it's own folders** The routes were placed all in app.js, normally I would place these routes in a directory that I would import into app so it is much cleaner.
